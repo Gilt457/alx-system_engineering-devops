@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script analyzes Apache log files in list format and shows some statistics.
+# It extracts the IP address and the HTTP status code from each log entry.
+# It counts how many times each combination of IP and status code appears.
+# It prints the results in descending order of frequency, showing the count, IP, and status code.
+myfile="apache-access.log"
+awk -F' ' '{ print $1, $9}' $myfile | sort | uniq -c|sort -nr
