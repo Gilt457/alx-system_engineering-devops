@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
-# A script that loops through 1 to 10 using while and prints a message based on the divisibility of the number
+# A script that uses a while loop to print different messages based on the value of i, which ranges from 1 to 10
 
-counter=1
+i=1
 
-while [ $counter -le 10 ]
+while [ $i -le 10 ]
 do
-    if [ $(($counter % 2)) -eq 0 ]
+    if [ $i -eq 4 ]
     then
-        echo "even number"
-    elif [ $(($counter % 3)) -eq 0 ]
+        echo "bad luck"
+    elif [ $i -eq 8 ]
     then
-        echo "multiple of three"
+        echo "good luck"
     else
-        echo "Wonderful School"
+        echo "Best School"
     fi
-    ((counter++))
+    ((i++))
 done
