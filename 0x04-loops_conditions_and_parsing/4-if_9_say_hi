@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Displays "Best School" 10 times using a for loop.
+#   On the 9th iteration, displays "Hi" before "Best School".
+
+for (( i=1; i<=10; i++ ))
+do
+  if [ $i -eq 10 ]
+  then
+    echo "Hi"
+  fi
+  echo "Best School"
+done
