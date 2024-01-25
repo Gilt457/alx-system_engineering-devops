@@ -1,23 +1,18 @@
-#!/bin/bash
-# A script that displays numbers from 1 to 20 and some messages based on the case statement
+#!/usr/bin/env bash
+# Prints numbers from 1 to 20 and also:
+#   "bad luck from China" when the number is 4
+#   "bad luck from Japan" when the number is 9
+#   "bad luck from Italy" when the number is 17
 
-# Initialize a counter variable
 count=1
 
-# Use a while loop to iterate from 1 to 20
 while [ $count -le 20 ]
 do
-  # Display the current value of count
-  echo $count
-
-  # Use a case statement to check the value of count and display a message accordingly
+  echo "$count"
   case $count in
-    4) echo "Bad luck from China" ;; # For 4, display "Bad luck from China"
-    9) echo "Bad luck from Japan" ;; # For 9, display "Bad luck from Japan"
-    17) echo "Bad luck from Italy" ;; # For 17, display "Bad luck from Italy"
-    *) ;; # For any other value, do nothing
+    "4") echo "bad luck from China";;
+    "9") echo "bad luck from Japan";;
+    "17") echo "bad luck from Italy";;
   esac
-
-  # Increment the counter by 1
-  count=$((count+1))
+  (( count++ ))
 done
