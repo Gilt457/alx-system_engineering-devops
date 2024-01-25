@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# This is a script that prints out some information from the /etc/passwd file.
+# It only shows the following fields for each user: 
+# - username
+# - user id
+# - home directory
+
+myfile="/etc/passwd"
+while IFS= read -r line
+do
+    # Use the cut command to extract the fields separated by colons
+    echo "$line" | cut -d":" -f1,3,6
+done < "$myfile"
