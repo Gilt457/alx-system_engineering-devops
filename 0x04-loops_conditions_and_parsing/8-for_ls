@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This is a bash script that lists the files and folders in the current directory
+# It extracts and prints the substring after the first dash in each file or folder name
+
+mylist=$(ls) # Assign the output of the ls command to a variable
+
+for i in $mylist; do # Loop through each item in the variable
+  echo "$i" | cut -d '-' -f2 # Use the cut command to split the item by the dash delimiter and print the second field
+done
