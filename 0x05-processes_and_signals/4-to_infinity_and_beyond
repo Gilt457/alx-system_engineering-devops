@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This is a bash script that prints 'To infinity and beyond' repeatedly
+# It pauses for 2 seconds after each print statement
+
+while true # Start an infinite loop
+do
+    echo "To infinity and beyond" # Display the message on the screen
+    sleep 2 # Wait for 2 seconds
+done # End of the loop
