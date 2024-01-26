@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# This script:
+#   Stores the script PID in /var/run/myscript.pid file.
+#   Prints "To infinity and beyond" every 2 seconds.
+#   Handles different signals as follows:
+#     - SIGINT: Prints "Y U no love me?!"
+#     - SIGTERM: Prints "I hate the kill command", deletes the PID file and exits.
+#     - SIGQUIT: Deletes the PID file and exits.
+
+# A function to delete the PID file and exit the script
+terminator() {
+  rm /var/run/myscript.pid
+  exit
+}
+
+# Write the script PID to the PID file
+echo "$$" > /var/run/myscript.pid
+
+# Loop forever
+while true
+do
+  # Print the message
+  echo "To infinity and beyond"
+  # Wait for 2 seconds
+  sleep 2
+  # Set the trap commands for different signals
+  trap 'echo "Y U no love me?!"' SIGINT
+  trap 'echo "I hate the kill command" && terminator' SIGTERM
+  trap 'terminator' SIGQUIT
+done
