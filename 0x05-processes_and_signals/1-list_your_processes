@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script prints out the current processes on the system.
+# It uses the ps command with the -auxf options to show
+# all the processes (-a), for all users (-u), in a full format (-f),
+# and with a tree structure (-x).
+ps -auxf
