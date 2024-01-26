@@ -1,48 +1,37 @@
 #!/usr/bin/env bash
 # This script manages 'manage_my_process'
 
-# Define a function to start the process
-start_process() {
-  ./manage_my_process &
-  touch /var/run/my_process.pid
-  echo "$!" > /var/run/my_process.pid
-  echo "manage_my_process started"
-}
+#!/usr/bin/env bash
+# Manages 'manage_my_process'
 
-# Define a function to stop the process
-stop_process() {
-  echo "manage_my_process stopped"
-  kill "$(cat /var/run/my_process.pid)"
-  rm -f /var/run/my_process.pid
-}
-
-# Define a function to restart the process
-restart_process() {
-  stop_process
-  start_process
-  echo "manage_my_process restarted"
-}
-
-# Check the number of arguments
-if [ $# -eq 0 ]
+if [ $# -gt 0 ]
 then
-  echo "Usage: manage_my_process {start|stop|restart}"
-  exit 1
-fi
-
-# Use a case statement to handle different arguments
-case "$1" in
-  start)
-    start_process
-    ;;
-  stop)
-    stop_process
-    ;;
-  restart)
-    restart_process
-    ;;
-  *)
+    if [ "$1" == "start" ]
+    then
+	./manage_my_process &
+	touch /var/run/my_process.pid
+#	echo $(pgrep -f manage_my_process) > /var/run/my_process.pid
+	echo "$!" > /var/run/my_process.pid
+	echo "manage_my_process started"
+    elif [ "$1" == "stop" ]
+    then
+#	kill $(pgrep -f manage_my_process)
+	echo "manage_my_process stopped"
+	kill "$(cat /var/run/my_process.pid)"
+	rm -f /var/run/my_process.pid
+    elif [ "$1" == "restart" ]
+    then
+#	kill $(pgrep -f manage_my_process)
+	kill "$(cat /var/run/my_process.pid)"
+	rm -f /var/run/my_process.pid
+	./manage_my_process &
+#	echo $(pgrep -f manage_my_process) > /var/run/my_process.pid
+	touch /var/run/my_process.pid
+	echo "$!" > /var/run/my_process.pid
+	echo "manage_my_process restarted"
+    else
+	echo "Usage: manage_my_process {start|stop|restart}"
+    fi
+else
     echo "Usage: manage_my_process {start|stop|restart}"
-    exit 2
-    ;;
-esac
+fi
