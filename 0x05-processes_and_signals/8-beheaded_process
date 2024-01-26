@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Sends a kill signal to the process named 7-highlander, if it exists.
+# The -f option matches the entire command line of the process.
+# The -SIGKILL option forces the process to terminate immediately.
+
+pkill -f -SIGKILL 7-highlander
