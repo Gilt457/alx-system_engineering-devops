@@ -1,37 +1,58 @@
 #!/usr/bin/env bash
-# This script manages 'manage_my_process'
+# This script controls 'manage_my_process'
 
-#!/usr/bin/env bash
-# Manages 'manage_my_process'
-
-if [ $# -gt 0 ]
+# Check if an argument is given
+if [ -n "$1" ]
 then
-    if [ "$1" == "start" ]
-    then
-	./manage_my_process &
-	touch /var/run/my_process.pid
-#	echo $(pgrep -f manage_my_process) > /var/run/my_process.pid
-	echo "$!" > /var/run/my_process.pid
-	echo "manage_my_process started"
-    elif [ "$1" == "stop" ]
-    then
-#	kill $(pgrep -f manage_my_process)
-	echo "manage_my_process stopped"
-	kill "$(cat /var/run/my_process.pid)"
-	rm -f /var/run/my_process.pid
-    elif [ "$1" == "restart" ]
-    then
-#	kill $(pgrep -f manage_my_process)
-	kill "$(cat /var/run/my_process.pid)"
-	rm -f /var/run/my_process.pid
-	./manage_my_process &
-#	echo $(pgrep -f manage_my_process) > /var/run/my_process.pid
-	touch /var/run/my_process.pid
-	echo "$!" > /var/run/my_process.pid
-	echo "manage_my_process restarted"
-    else
-	echo "Usage: manage_my_process {start|stop|restart}"
-    fi
+    # Get the PID of manage_my_process if it exists
+    PID=$(cat /var/run/my_process.pid 2>/dev/null)
+
+    # Perform the action based on the argument
+    case "$1" in
+        start)
+            # Start manage_my_process if it is not running
+            if [ -z "$PID" ]
+            then
+                ./manage_my_process &
+                # Save the PID to a file
+                echo "$!" > /var/run/my_process.pid
+                echo "manage_my_process started"
+            else
+                echo "manage_my_process is already running"
+            fi
+            ;;
+        stop)
+            # Stop manage_my_process if it is running
+            if [ -n "$PID" ]
+            then
+                # Kill the process by PID
+                kill "$PID"
+                # Remove the PID file
+                rm -f /var/run/my_process.pid
+                echo "manage_my_process stopped"
+            else
+                echo "manage_my_process is not running"
+            fi
+            ;;
+        restart)
+            # Restart manage_my_process
+            # Stop it first if it is running
+            if [ -n "$PID" ]
+            then
+                kill "$PID"
+                rm -f /var/run/my_process.pid
+            fi
+            # Start it again
+            ./manage_my_process &
+            echo "$!" > /var/run/my_process.pid
+            echo "manage_my_process restarted"
+            ;;
+        *)
+            # Display usage message for invalid arguments
+            echo "Usage: manage_my_process {start|stop|restart}"
+            ;;
+    esac
 else
+    # Display usage message if no argument is given
     echo "Usage: manage_my_process {start|stop|restart}"
 fi
