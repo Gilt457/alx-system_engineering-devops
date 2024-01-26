@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script shows the processes that have bash in their name or command.
+# The shellcheck warning SC2009 is ignored because we want to see the full command.
+ps -aux | grep bash
