@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# The purpose of this script is to show the processes that have bash in their name
+# The pgrep command is used instead of ps, as it can filter by process name
+# The -l option prints the PID and the process name for each match
+
+pgrep -l bash
