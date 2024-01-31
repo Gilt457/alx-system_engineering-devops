@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script modifies the /etc/hosts file to achieve the following:
+#   - Change the IP address of localhost to 127.0.0.2
+#   - Redirect facebook.com to 8.8.8.8
+
+# Make a backup copy of the original hosts file
+cp /etc/hosts ~/hosts.new
+# Overwrite the hosts file with the new IP addresses
+echo "127.0.0.2		localhost" > ~/hosts.new
+echo "8.8.8.8		facebook.com" >> ~/hosts.new
+# Replace the original hosts file with the modified one
+cp -f ~/hosts.new /etc/hosts
