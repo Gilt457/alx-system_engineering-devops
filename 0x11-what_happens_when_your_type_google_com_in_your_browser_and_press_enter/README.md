@@ -33,6 +33,6 @@ The process of typing `google.com` into a browser and pressing `Enter` involves 
 
 The process of loading a webpage is a complex task that involves multiple layers of computing, ranging from local hardware and software to network protocols and server-side processing.
 
-## Borel Lepatio
+## Author
 
-- Your Name
+- Borel Lepatio
