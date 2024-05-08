@@ -1,3 +1,5 @@
+<img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/294/pQ9YzVY.gif" alt="postmortem">
+
 # Postmortem: Database Outage Incident
 
 ## Introduction
