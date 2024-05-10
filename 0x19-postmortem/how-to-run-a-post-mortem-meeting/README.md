@@ -1,3 +1,6 @@
+<img src="https://assets-global.website-files.com/62fcfcf2e1a4c21ed18b80e6/65329294941475a4b7ceedb7_post-mortem_meeting_steps_znkb.png" alt="postmortem meeting">
+
+
 # How to Prepare for a Post-Mortem Meeting
 
 A post-mortem meeting is a crucial part of any project’s lifecycle. It provides an opportunity to reflect on the project’s successes and failures, gather feedback, and plan for future improvements. Here’s how to prepare for a post-mortem meeting:
