@@ -1,1 +1,1 @@
-0x1A. Application server
+Solution to 0x1A. Application server
