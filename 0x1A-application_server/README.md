@@ -1,1 +1,1 @@
-Solution to this task 0x1A. Application server
+This is the solution to the 0x1A. Application server task
